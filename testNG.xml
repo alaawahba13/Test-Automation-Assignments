@@ -1,0 +1,15 @@
+<suite name="GroupedTestSuite">
+    <test name="login test">
+        <groups>
+            <run>
+                <include name="login scenarios"/>
+                <include name="logout scenarios"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="login.LoginTest"/>
+            <class name="logout.LogoutTests"/>
+            <class name="base.BaseTests"/>
+        </classes>
+    </test>
+</suite>
