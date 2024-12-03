@@ -22,5 +22,8 @@ public class LoginConfirmationPage {
     public String getURL(){
         return driver.getCurrentUrl();
     }
+    public void clickLogout(){
+        driver.findElement(logoutBtn).click();
+    }
 
 }

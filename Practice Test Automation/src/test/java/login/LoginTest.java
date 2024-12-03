@@ -1,6 +1,5 @@
-package LoginTests;
+package login;
 
-import com.beust.ah.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -20,10 +19,6 @@ public class LoginTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
-    }
-
-    @BeforeMethod
-    public void goToLoginPage() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
     }
 
@@ -38,7 +33,7 @@ public class LoginTest {
         Assert.assertTrue(URL.contains("practicetestautomation.com/logged-in-successfully/"),"Wrong URL");
         Assert.assertEquals(title,"Logged In Successfully","Title not found");
         Assert.assertEquals(logoutBtn,"Log out","Logout button not found");
-
+        loginConfirmationPage.clickLogout();
     }
 
     @Test
