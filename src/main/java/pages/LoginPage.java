@@ -31,8 +31,9 @@ public class LoginPage {
         driver.findElement(loginPasswordTxtBox).sendKeys(password);
     }
 
-    public void clickLoginBtn(){
+    public HomePage clickLoginBtn(){
         driver.findElement(loginBtn).click();
+        return new HomePage(driver);
     }
 
     public void clearLoginFields(){
