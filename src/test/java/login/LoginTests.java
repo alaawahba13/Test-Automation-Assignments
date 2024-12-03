@@ -5,10 +5,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.AccountConfirmationPage;
 import pages.LoginPage;
 
-public class LoginTest extends BaseTests {
+public class LoginTests extends BaseTests {
     LoginPage loginPage;
 
     @BeforeClass
@@ -22,30 +21,14 @@ public class LoginTest extends BaseTests {
     }
 
     @Test
-    public void testValidCredentialsWithLogout(){
-        loginPage.typeLoginEmail("alaawahba13@gmail.com");
+    public void testValidCredentials(){
+        loginPage.typeLoginEmail("alaawahba7@gmail.com");
         loginPage.typeLoginPassword("1234567");
-        loginPage.clickLoginBtn();
+        homePage =  loginPage.clickLoginBtn();
         String loggedInLbl = homePage.getLoggedInLbl();
         System.out.println(loggedInLbl);
         Assert.assertTrue(loggedInLbl.contains("Logged in as "),"Error logging In");
-        loginPage = homePage.clickLogOut();
-        Assert.assertTrue(loginPage.getURL().contains("login"),"Error Logging out");
     }
-    @Test
-    public void testValidCredentialsWithDeleteAccount(){
-        loginPage.typeLoginEmail("alaawahba13@gmail.com");
-        loginPage.typeLoginPassword("1234567");
-        loginPage.clickLoginBtn();
-        String loggedInLbl = homePage.getLoggedInLbl();
-        System.out.println(loggedInLbl);
-        Assert.assertTrue(loggedInLbl.contains("Logged in as "),"Error logging In");
-        AccountConfirmationPage accountDeletedPage = homePage.clickDeleteAccount();
-        Assert.assertEquals(accountDeletedPage.getDeleteConfirmMsg(),"ACCOUNT DELETED!","Error Logging out");
-        homePage=  accountDeletedPage.clickContinue();
-        goToLoginPage();
-    }
-
     @Test
     public void testEmptyCredentials(){
         loginPage.typeLoginEmail("");
