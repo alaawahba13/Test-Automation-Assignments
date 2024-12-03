@@ -1,6 +1,7 @@
 package login;
 
 import base.BaseTests;
+import base.Data;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -29,47 +30,16 @@ public class LoginTests extends BaseTests {
         System.out.println(loggedInLbl);
         Assert.assertTrue(loggedInLbl.contains("Logged in as "),"Error logging In");
     }
-    @Test
-    public void testEmptyCredentials(){
-        loginPage.typeLoginEmail("");
-        loginPage.typeLoginPassword("");
+
+    @Test( dataProviderClass = Data.class,dataProvider = "login")
+    public void testInvalidCredentials(String email, String password, String expectedMsg, String type){
+        loginPage.typeLoginEmail(email);
+        loginPage.typeLoginPassword(password);
         loginPage.clickLoginBtn();
-        String errorMsg = loginPage.getLoginToolTipMsg();
+        String errorMsg = type.equals("tooltip")? loginPage.getLoginToolTipMsg():loginPage.getLoginErrorMsg();
         System.out.println(errorMsg);
-        Assert.assertEquals(errorMsg,"Please fill out this field.","Error logging In");
+        Assert.assertTrue(errorMsg.contains(expectedMsg),"Error logging In");
     }
-
-
-    @Test
-    public void testWrongPassword(){
-        loginPage.typeLoginEmail("alaawahbaa13@gmail.com");
-        loginPage.typeLoginPassword("45");
-        loginPage.clickLoginBtn();
-        String errorMsg = loginPage.getLoginErrorMsg();
-        System.out.println(errorMsg);
-        Assert.assertEquals(errorMsg,"Your email or password is incorrect!","Error logging In");
-    }
-
-    @Test
-    public void testWrongEmailDomain(){
-        loginPage.typeLoginEmail("alaawahbaa13@gmail");
-        loginPage.typeLoginPassword("1234567");
-        loginPage.clickLoginBtn();
-        String errorMsg = loginPage.getLoginErrorMsg();
-        System.out.println(errorMsg);
-        Assert.assertEquals(errorMsg,"Your email or password is incorrect!","Error logging In");
-    }
-
-    @Test
-    public void testWrongEmailFormat(){
-        loginPage.typeLoginEmail("alaawahbaa13gmail.com");
-        loginPage.typeLoginPassword("1234567");
-        loginPage.clickLoginBtn();
-        String errorMsg = loginPage.getLoginToolTipMsg();
-        System.out.println(errorMsg);
-        Assert.assertTrue(errorMsg.contains("Please include an '@' in the email address."),"Error logging In");
-    }
-
 
 
 }

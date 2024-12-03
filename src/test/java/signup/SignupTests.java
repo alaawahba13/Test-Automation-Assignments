@@ -1,6 +1,7 @@
 package signup;
 
 import base.BaseTests;
+import base.Data;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -38,22 +39,13 @@ public class SignupTests extends BaseTests {
         Assert.assertTrue(homePage.getLoggedInLbl().contains("Logged in as"));
     }
 
-    @Test
-    public void testEmptyFields(){
-        loginPage.typeSignUpName("");
-        loginPage.typeSignUpEmail("");
+    @Test(dataProviderClass = Data.class, dataProvider = "signup")
+    public void testInvalidSignUp(String name, String email, String expectedMsg, String type){
+        loginPage.typeSignUpName(name);
+        loginPage.typeSignUpEmail(email);
         loginPage.clickSignUpBtn();
-        String errorMsg = loginPage.getSignupToolTipMsg();
-        Assert.assertEquals(errorMsg,"Please fill out this field.", "Error Sign up");
-    }
-
-    @Test
-    public void testExistingEmail(){
-        loginPage.typeSignUpName("alaa");
-        loginPage.typeSignUpEmail("alaawahbaa13@gmail.com");
-        loginPage.clickSignUpBtn();
-        String errorMsg = loginPage.getSignupErrorMsg();
-        Assert.assertEquals(errorMsg,"Email Address already exist!", "Error Sign up");
+        String errorMsg = type.equals("tooltip")?loginPage.getSignupToolTipMsg():loginPage.getSignupErrorMsg();
+        Assert.assertEquals(errorMsg,expectedMsg, "Error Sign up");
     }
 
 }
