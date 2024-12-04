@@ -1,52 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ScenarioSuite" parallel="false">
-    <test name="LoginLogoutScenario">
+<!--    <test name="LoginLogoutScenario">-->
+<!--        <classes>-->
+<!--            <class name="login.LoginTests">-->
+<!--                <methods>-->
+<!--                    <include name="testValidCredentials"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="home.HomeTests">-->
+<!--                <methods>-->
+<!--                    <include name="testLogout"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="LoginScenarios">-->
+<!--        <classes>-->
+<!--            <class name="login.LoginTests">-->
+<!--                <methods>-->
+<!--                    <exclude name="testValidCredentials">-->
+<!--                    </exclude>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="SignUpScenarios">-->
+<!--        <classes>-->
+<!--            <class name="signup.SignupTests">-->
+<!--                <methods>-->
+<!--                    <exclude name="testValidSignUp">-->
+<!--                    </exclude>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="SingUp_DeleteAccount">-->
+<!--        <classes>-->
+<!--            <class name="signup.SignupTests">-->
+<!--                <methods>-->
+<!--                    <include name="testValidSignUp">-->
+<!--                    </include>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="home.HomeTests">-->
+<!--                <methods>-->
+<!--                    <include name="testDeleteAccount">-->
+<!--                    </include>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="SearchAddToCart">-->
+<!--        <parameter name="index" value="1"/>-->
+<!--        <classes>-->
+<!--            <class name="products.ProductsTests">-->
+<!--                <methods>-->
+<!--                    <include name="viewProducts"/>-->
+<!--                    <include name="testSearchForItem"/>-->
+<!--                    <include name="testAddToCartFromProducts"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="filterByBrand">-->
+<!--        <parameter name="index" value="1"/>-->
+<!--        <classes>-->
+<!--            <class name="products.ProductsTests">-->
+<!--                <methods>-->
+<!--                    <include name="viewProducts"/>-->
+<!--                    <include name="testFilterByBrand"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="filterByCategory">-->
+<!--        <parameter name="index" value="1"/>-->
+<!--        <classes>-->
+<!--            <class name="products.ProductsTests">-->
+<!--                <methods>-->
+<!--                    <include name="viewProducts"/>-->
+<!--                    <include name="testFilterByCategory"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="ViewProduct_AddToCart_ReviewProduct">-->
+<!--        <parameter name="index" value="1"/>-->
+<!--        <classes>-->
+<!--            <class name="products.ProductsTests">-->
+<!--                <methods>-->
+<!--                    <include name="viewProducts"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="products.DetailedProductsTests">-->
+<!--                <methods>-->
+<!--                    <include name="testViewProductButton"/>-->
+<!--                    <include name="testReviewProduct"/>-->
+<!--                    <include name="testAddToCartFromViewProductPage"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="RemoveCartItems">
+        <parameter name="index" value="0"/>
         <classes>
-            <class name="login.LoginTests">
+            <class name="products.ProductsTests">
                 <methods>
-                    <include name="testValidCredentials"/>
+                    <include name="viewProducts"/>
+                    <include name="testAddToCartFromProducts"/>
                 </methods>
             </class>
-            <class name="home.HomeTests">
+            <class name="cart.CartTests">
                 <methods>
-                    <include name="testLogout"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="LoginScenarios">
-        <classes>
-            <class name="login.LoginTests">
-                <methods>
-                    <exclude name="testValidCredentials">
-                    </exclude>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="SignUpScenarios">
-        <classes>
-            <class name="signup.SignupTests">
-                <methods>
-                    <exclude name="testValidSignUp">
-                    </exclude>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="SingUp_DeleteAccount">
-        <classes>
-            <class name="signup.SignupTests">
-                <methods>
-                    <include name="testValidSignUp">
-                    </include>
-                </methods>
-            </class>
-            <class name="home.HomeTests">
-                <methods>
-                    <include name="testDeleteAccount">
-                    </include>
+                    <include name="goToCartPage"/>
+                    <include name="testDeleteCartItem"/>
                 </methods>
             </class>
         </classes>
