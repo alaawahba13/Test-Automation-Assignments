@@ -23,7 +23,7 @@ public class LoginTests extends BaseTests {
 
     @Test
     public void testValidCredentials(){
-        loginPage.typeLoginEmail("alaawahba7@gmail.com");
+        loginPage.typeLoginEmail("alaawahbaa13@gmail.com");
         loginPage.typeLoginPassword("1234567");
         homePage =  loginPage.clickLoginBtn();
         String loggedInLbl = homePage.getLoggedInLbl();

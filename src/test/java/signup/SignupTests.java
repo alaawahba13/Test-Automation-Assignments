@@ -21,7 +21,7 @@ public class SignupTests extends BaseTests {
     @Test
     public void testValidSignUp(){
         loginPage.typeSignUpName("alaa");
-        loginPage.typeSignUpEmail("alaawahba5@gmail.com");
+        loginPage.typeSignUpEmail("alaawahbaa8@gmail.com");
         SignUpPage signUpPage = loginPage.clickSignUpBtn();
         signUpPage.typePassword("1234567");
         signUpPage.selectDateOfBirth("7","August","2001");
