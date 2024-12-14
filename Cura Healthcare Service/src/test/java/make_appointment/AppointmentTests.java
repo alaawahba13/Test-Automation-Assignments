@@ -2,10 +2,26 @@ package make_appointment;
 
 import base.BaseTests;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class AppointmentTests extends BaseTests {
 
+    @BeforeClass
+    public void goToLoginPage() {
+        loginPage = homePage.clickLogin();
+    }
+
+    @Test
+    public void testValidCredentials() {
+        loginPage.typeUsername("John Doe");
+        loginPage.typePassword("ThisIsNotAPassword");
+        appointmentPage = loginPage.clickLogin();
+        String actualTitle = appointmentPage.getTitle();
+        Assert.assertEquals(actualTitle,"Make Appointment","Error Logging ");
+
+    }
 
     @Test(dependsOnMethods = "testValidCredentials")
     public void makeAppointment() {
@@ -23,7 +39,12 @@ public class AppointmentTests extends BaseTests {
         Assert.assertEquals(appointmentConfirmationPage.getHospitalReadmission(), isApplied, "Wrong Hospital Readmission");
         Assert.assertEquals(appointmentConfirmationPage.getProgram(), program, "Wrong program Name");
         Assert.assertEquals(appointmentConfirmationPage.getVisitDate(), visitDate, "Wrong date");
+    }
 
+    @AfterClass
+    public void clickLogout(){
+        homePage.clickLogout();
+        Assert.assertEquals(homePage.getURL(),"https://katalon-demo-cura.herokuapp.com/","Error Logout");
     }
 
 }

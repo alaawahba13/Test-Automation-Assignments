@@ -4,9 +4,7 @@
 <suite name="CuraHealthCare" >
     <test name="BookAppointment">
         <classes>
-            <class name="user.LoginTests"/>
             <class name="make_appointment.AppointmentTests"/>
-            <class name="user.LogoutTests"/>
         </classes>
     </test>
 
