@@ -6,9 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.LoginPage;
+import pages.account.LoginPage;
 
-public class LoginTests extends BaseTests {
+public class TC03_InvalidLogin extends BaseTests {
     LoginPage loginPage;
 
     @BeforeClass
@@ -19,16 +19,6 @@ public class LoginTests extends BaseTests {
     @BeforeMethod
     public void clearTextBoxes(){
         loginPage.clearLoginFields();
-    }
-
-    @Test
-    public void testValidCredentials(){
-        loginPage.typeLoginEmail("alaawahbaa13@gmail.com");
-        loginPage.typeLoginPassword("1234567");
-        homePage =  loginPage.clickLoginBtn();
-        String loggedInLbl = homePage.getLoggedInLbl();
-        System.out.println(loggedInLbl);
-        Assert.assertTrue(loggedInLbl.contains("Logged in as "),"Error logging In");
     }
 
     @Test( dataProviderClass = Data.class,dataProvider = "login")

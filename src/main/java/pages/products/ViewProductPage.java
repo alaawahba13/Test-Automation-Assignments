@@ -1,19 +1,15 @@
-package pages;
+package pages.products;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import base.PageBase;
+import pages.common.PopUp;
 
-import java.time.Duration;
 
-import static java.time.temporal.ChronoUnit.SECONDS;
+public class ViewProductPage extends PageBase {
 
-public class ViewProductPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
-
+    //items
     private final By itemTitle = By.cssSelector(".product-information h2");
     private final By itemPrice = By.cssSelector(".product-information span span");
     private final By itemQuantity = By.id("quantity");
@@ -24,50 +20,52 @@ public class ViewProductPage {
     private final By emailTxt = By.id("email");
     private final By reviewTxt = By.id("review");
     private final By submitBtn = By.id("button-review");
-    private final By thanksLbl = By.cssSelector(".alert-success alert span");
+    private final By thanksLbl = By.cssSelector("#review-section span");
 
 
-
-    public ViewProductPage(WebDriver driver){
-        this.driver = driver;
-        wait =new WebDriverWait(driver, Duration.of(60, SECONDS));
+    public ViewProductPage(WebDriver driver) {
+        super(driver);
     }
 
     public String getItemTitle() {
-        return driver.findElement(itemTitle).getText();
+        return getText(itemTitle);
     }
+
     public String getItemPrice() {
-        return driver.findElement(itemPrice).getText();
+        return getText(itemPrice);
     }
+
     public void setItemQuantity(String quantity) {
         WebElement textBox = driver.findElement(itemQuantity);
         textBox.clear();
         textBox.sendKeys(quantity);
     }
 
-    public void clickAddToCart() {
-        driver.findElement(addToCartBtn).click();
+    public PopUp clickAddToCart() {
+        clickElement(addToCartBtn);
+        return new PopUp(driver);
     }
+
+    //========================= Review  ===========================================
+
     public void enterReviewerName(String name) {
-        driver.findElement(nameTxt).sendKeys(name);
+        setText(nameTxt, name);
     }
+
     public void enterReviewerEmail(String email) {
-        driver.findElement(emailTxt).sendKeys(email);
+        setText(emailTxt, email);
     }
+
     public void enterReviewText(String review) {
-        driver.findElement(reviewTxt).sendKeys(review);
+        setText(reviewTxt, review);
     }
+
     public void clickSubmitReview() {
-        driver.findElement(submitBtn).click();
-    }
-    public String getSubmitMsg(){
-        return driver.findElement(thanksLbl).getText();
+        clickElement(submitBtn);
     }
 
-    public String getURL(){
-        return driver.getCurrentUrl();
+    public String getSubmitMsg() {
+        return getText(thanksLbl);
     }
-
-
 
 }

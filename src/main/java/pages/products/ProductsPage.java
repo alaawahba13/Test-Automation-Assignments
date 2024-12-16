@@ -1,23 +1,24 @@
-package pages;
+package pages.products;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.common.HomePage;
 
 
-public class ProductsPage extends HomePage{
+public class ProductsPage extends HomePage {
 
     private final By searchBar = By.id("search_product");
     private final By searchBtn = By.id("submit_search");
 
 
     public ProductsPage(WebDriver driver){
-        this.driver = driver;
+       super(driver);
     }
 
 
     public void searchItem(String item){
-        driver.findElement(searchBar).sendKeys(item);
-        driver.findElement(searchBtn).click();
+        setText(searchBar,item);
+        clickElement(searchBtn);
     }
 
 

@@ -1,11 +1,11 @@
-package pages;
+package pages.account;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import base.PageBase;
 
-public class SignUpPage {
-    private final WebDriver driver;
+public class SignUpPage extends PageBase {
 
     private final By passwordField = By.id("password");
     private final By daysList = By.id("days");
@@ -23,14 +23,15 @@ public class SignUpPage {
     private final By createAccountBtn = By.xpath("//button[@data-qa=\"create-account\"]");
 
 
-    public SignUpPage(WebDriver driver){
-        this.driver = driver;
+    public SignUpPage(WebDriver driver) {
+        super(driver);
     }
 
-    public void typePassword(String password){
-        driver.findElement(passwordField).sendKeys(password);
+    public void typePassword(String password) {
+        setText(passwordField, password);
     }
-    public void selectDateOfBirth(String day, String month, String year){
+
+    public void selectDateOfBirth(String day, String month, String year) {
         Select daysDropDown = new Select(driver.findElement(daysList));
         daysDropDown.selectByVisibleText(day);
         Select monthsDropDown = new Select(driver.findElement(monthsList));
@@ -38,41 +39,41 @@ public class SignUpPage {
         Select yearsDropDown = new Select(driver.findElement(yearsList));
         yearsDropDown.selectByVisibleText(year);
     }
+
     public void typeFirstName(String firstNameValue) {
-        driver.findElement(firstName).sendKeys(firstNameValue);
+        setText(firstName, firstNameValue);
     }
 
     public void typeLastName(String lastNameValue) {
-        driver.findElement(lastName).sendKeys(lastNameValue);
+        setText(lastName, lastNameValue);
     }
 
     public void typeAddress(String addressValue) {
-        driver.findElement(address).sendKeys(addressValue);
+        setText(address, addressValue);
     }
 
     public void selectCountry(String countryValue) {
-        Select countryDropDown = new Select(driver.findElement(country));
-        countryDropDown.selectByVisibleText(countryValue);
+        new Select(driver.findElement(country)).selectByVisibleText(countryValue);
     }
 
     public void typeState(String stateValue) {
-        driver.findElement(state).sendKeys(stateValue);
+        setText(state, stateValue);
     }
 
     public void typeCity(String cityValue) {
-        driver.findElement(city).sendKeys(cityValue);
+        setText(city, cityValue);
     }
 
     public void typeZipcode(String zipcodeValue) {
-        driver.findElement(zipcode).sendKeys(zipcodeValue);
+        setText(zipcode, zipcodeValue);
     }
 
     public void typePhoneNumber(String phoneNumberValue) {
-        driver.findElement(phoneNumber).sendKeys(phoneNumberValue);
+        setText(phoneNumber, phoneNumberValue);
     }
 
     public AccountConfirmationPage clickCreateAccountButton() {
-        driver.findElement(createAccountBtn).click();
+        clickElement(createAccountBtn);
         return new AccountConfirmationPage(driver);
     }
 

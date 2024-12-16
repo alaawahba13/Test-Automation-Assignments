@@ -1,29 +1,31 @@
-package pages;
+package pages.account;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import base.PageBase;
+import pages.common.HomePage;
 
-public class AccountConfirmationPage {
-    private final WebDriver driver;
+public class AccountConfirmationPage extends PageBase {
+
 
     private final By accountCreatedLbl = By.xpath("//h2[@data-qa=\"account-created\"]");
     private final By accountDeletedLbl = By.xpath("//h2[@data-qa=\"account-deleted\"]");
     private final By continueBtn = By.linkText("Continue");
 
     public AccountConfirmationPage(WebDriver driver){
-        this.driver = driver;
+       super(driver);
     }
 
     public String getDeleteConfirmMsg(){
-        return driver.findElement(accountDeletedLbl).getText();
+        return getText(accountDeletedLbl);
     }
 
     public HomePage clickContinue(){
-        driver.findElement(continueBtn).click();
+        clickElement(continueBtn);
         return new HomePage(driver);
     }
 
     public String getAccountCreatedLbl(){
-        return driver.findElement(accountCreatedLbl).getText();
+        return getText(accountCreatedLbl);
     }
 }

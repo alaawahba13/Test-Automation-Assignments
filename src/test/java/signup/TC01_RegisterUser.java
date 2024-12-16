@@ -1,24 +1,21 @@
 package signup;
 
 import base.BaseTests;
-import base.Data;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.AccountConfirmationPage;
-import pages.LoginPage;
-import pages.SignUpPage;
+import pages.account.AccountConfirmationPage;
+import pages.account.SignUpPage;
 
-public class SignupTests extends BaseTests {
+public class TC01_RegisterUser extends BaseTests {
 
-    LoginPage loginPage;
 
     @BeforeClass
     public void goToSignUpPage(){
-      loginPage=  homePage.clickLogIn();
+        loginPage=  homePage.clickLogIn();
     }
 
-    @Test
+    @Test(priority = 1)
     public void testValidSignUp(){
         loginPage.typeSignUpName("alaa");
         loginPage.typeSignUpEmail("alaawahbaa8@gmail.com");
@@ -39,13 +36,10 @@ public class SignupTests extends BaseTests {
         Assert.assertTrue(homePage.getLoggedInLbl().contains("Logged in as"));
     }
 
-    @Test(dataProviderClass = Data.class, dataProvider = "signup")
-    public void testInvalidSignUp(String name, String email, String expectedMsg, String type){
-        loginPage.typeSignUpName(name);
-        loginPage.typeSignUpEmail(email);
-        loginPage.clickSignUpBtn();
-        String errorMsg = type.equals("tooltip")?loginPage.getSignupToolTipMsg():loginPage.getSignupErrorMsg();
-        Assert.assertEquals(errorMsg,expectedMsg, "Error Sign up");
+    @Test(priority = 2)
+    public void testDeleteAccount(){
+        AccountConfirmationPage accountDeletedPage = homePage.clickDeleteAccount();
+        Assert.assertEquals(accountDeletedPage.getDeleteConfirmMsg(),"ACCOUNT DELETED!","Error Logging out");
+        homePage=  accountDeletedPage.clickContinue();
     }
-
 }
