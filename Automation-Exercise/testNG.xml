@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ScenarioSuite" parallel="false" >
+    <test name="LoginTests">
+        <classes>
+            <class name="login.TC02_ValidLogin"/>
+            <class name="login.TC03_InvalidLogin"/>
+            <class name="login.TC04_ValidLogout">
+            </class>
+        </classes>
+    </test>
+    <test name="SignUpTests">
+        <classes>
+            <class name="signup.TC01_RegisterUser"/>
+            <class name="signup.TC05_InvalidRegister">
+            </class>
+        </classes>
+    </test>
+    <test name="HomeTests">
+        <classes>
+            <class name="home.TC06_ContactUsForm"/>
+            <class name="home.TC07_VerifyTestCasesPage"/>
+            <class name="home.TC10_VerifySubscriptionInHome"/>
+            <class name="home.TC25_ScrollUpUsingArrowButton">
+        </class>
+        </classes>
+    </test>
+    <test name="productsTests">
+        <classes>
+            <class name="products.TC08_VerifyAllProductsAndDetails"/>
+            <class name="products.TC09_SearchProduct"/>
+            <class name="products.TC18_ViewCategoryProducts"/>
+            <class name="products.TC19_ViewBrandProducts"/>
+            <class name="products.TC21_AddProductReview">
+        </class>
+        </classes>
+    </test>
+    <test name="CartTests">
+        <classes>
+            <class name="cart.TC13_VerifyProductsQuantityInCart"/>
+            <class name="cart.TC11_VerifySubscriptionInCart"/>
+            <class name="cart.TC12_AddProductsInCart"/>
+            <class name="cart.TC17_RemoveProductsFromCart"/>
+            <class name="cart.TC22_AddToCartFromRecommendedItems">
+            </class>
+        </classes>
+    </test>
+</suite>
