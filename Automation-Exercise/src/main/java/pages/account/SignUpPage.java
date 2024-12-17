@@ -72,9 +72,9 @@ public class SignUpPage extends PageBase {
         setText(phoneNumber, phoneNumberValue);
     }
 
-    public AccountConfirmationPage clickCreateAccountButton() {
+    public ConfirmationPage clickCreateAccountButton() {
         clickElement(createAccountBtn);
-        return new AccountConfirmationPage(driver);
+        return new ConfirmationPage(driver);
     }
 
 

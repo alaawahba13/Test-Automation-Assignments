@@ -2,7 +2,7 @@ package base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.account.AccountConfirmationPage;
+import pages.account.ConfirmationPage;
 import pages.account.LoginPage;
 import pages.common.ContactUsPage;
 import pages.common.TestCasesPage;
@@ -51,9 +51,9 @@ public class PageBase extends Common {
         return new LoginPage(driver);
     }
 
-    public AccountConfirmationPage clickDeleteAccount() {
+    public ConfirmationPage clickDeleteAccount() {
         clickElement(deleteAccountBtn);
-        return new AccountConfirmationPage(driver);
+        return new ConfirmationPage(driver);
     }
 
     public ProductsPage clickProducts() {

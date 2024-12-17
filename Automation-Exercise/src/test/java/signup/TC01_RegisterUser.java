@@ -4,7 +4,7 @@ import base.BaseTests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.account.AccountConfirmationPage;
+import pages.account.ConfirmationPage;
 import pages.account.SignUpPage;
 
 public class TC01_RegisterUser extends BaseTests {
@@ -30,16 +30,16 @@ public class TC01_RegisterUser extends BaseTests {
         signUpPage.typeCity("Brooklyn");
         signUpPage.typeZipcode("4543");
         signUpPage.typePhoneNumber("123456897");
-        AccountConfirmationPage accountConfirmationPage = signUpPage.clickCreateAccountButton();
-        Assert.assertEquals(accountConfirmationPage.getAccountCreatedLbl(),"ACCOUNT CREATED!","Error creating account");
-        homePage = accountConfirmationPage.clickContinue();
+         confirmationPage = signUpPage.clickCreateAccountButton();
+        Assert.assertEquals(confirmationPage.getAccountCreatedLbl(),"ACCOUNT CREATED!","Error creating account");
+        homePage = confirmationPage.clickContinue();
         Assert.assertTrue(homePage.getLoggedInLbl().contains("Logged in as"));
     }
 
     @Test(priority = 2)
     public void testDeleteAccount(){
-        AccountConfirmationPage accountDeletedPage = homePage.clickDeleteAccount();
-        Assert.assertEquals(accountDeletedPage.getDeleteConfirmMsg(),"ACCOUNT DELETED!","Error Logging out");
-        homePage=  accountDeletedPage.clickContinue();
+         confirmationPage = homePage.clickDeleteAccount();
+        Assert.assertEquals(confirmationPage.getDeleteConfirmMsg(),"ACCOUNT DELETED!","Error Logging out");
+        homePage=  confirmationPage.clickContinue();
     }
 }
