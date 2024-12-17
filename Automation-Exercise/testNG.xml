@@ -31,8 +31,10 @@
             <class name="products.TC09_SearchProduct"/>
             <class name="products.TC18_ViewCategoryProducts"/>
             <class name="products.TC19_ViewBrandProducts"/>
-            <class name="products.TC21_AddProductReview">
-        </class>
+            <class name="products.TC21_AddProductReview"/>
+            <class name="products.TC20_SearchProductsAndVerifyCart">
+
+            </class>
         </classes>
     </test>
     <test name="CartTests">
@@ -42,6 +44,16 @@
             <class name="cart.TC12_AddProductsInCart"/>
             <class name="cart.TC17_RemoveProductsFromCart"/>
             <class name="cart.TC22_AddToCartFromRecommendedItems">
+            </class>
+        </classes>
+    </test>
+    <test name="CheckoutTests">
+        <classes>
+            <class name="checkout.TC14_RegisterWhileCheckout"/>
+            <class name="checkout.TC15_RegisterBeforeCheckout"/>
+            <class name="checkout.TC16_LoginBeforeCheckout"/>
+            <class name="checkout.TC23_VerifyAddressDetails"/>
+            <class name="checkout.TC24_DownloadInvoice">
             </class>
         </classes>
     </test>

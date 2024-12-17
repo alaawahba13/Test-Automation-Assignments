@@ -78,6 +78,9 @@ public class CartPage  extends PageBase {
         return getText(emptyCartTxt);
     }
 
-
+    public CheckoutPage clickCheckout(){
+        clickElement(checkoutBtn);
+        return new CheckoutPage(driver);
+    }
 
 }
