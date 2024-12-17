@@ -7,4 +7,10 @@
             </class>
         </classes>
     </test>
+    <test name="Exceptions">
+        <classes>
+            <class name="execptions.ExceptionsTest">
+            </class>
+        </classes>
+    </test>
 </suite>

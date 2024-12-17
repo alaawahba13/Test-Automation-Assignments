@@ -1,38 +1,32 @@
 package login;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import base.BaseTests;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginConfirmationPage;
 import pages.LoginPage;
 
-public class LoginTest {
-    public WebDriver driver;
+public class LoginTest extends BaseTests {
     LoginPage loginPage;
 
     @BeforeClass
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
+    public void goToLoginPage() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
+        loginPage = new LoginPage(driver);
     }
 
     @Test
     public void testValidCredentials() {
         loginPage.typeUsername("student");
         loginPage.typePassword("Password123");
-        LoginConfirmationPage loginConfirmationPage =  loginPage.clickSubmit();
+        LoginConfirmationPage loginConfirmationPage = loginPage.clickSubmit();
         String URL = loginConfirmationPage.getURL();
         String title = loginConfirmationPage.getTitle();
         String logoutBtn = loginConfirmationPage.getLogout();
-        Assert.assertTrue(URL.contains("practicetestautomation.com/logged-in-successfully/"),"Wrong URL");
-        Assert.assertEquals(title,"Logged In Successfully","Title not found");
-        Assert.assertEquals(logoutBtn,"Log out","Logout button not found");
+        Assert.assertTrue(URL.contains("practicetestautomation.com/logged-in-successfully/"), "Wrong URL");
+        Assert.assertEquals(title, "Logged In Successfully", "Title not found");
+        Assert.assertEquals(logoutBtn, "Log out", "Logout button not found");
         loginConfirmationPage.clickLogout();
     }
 
@@ -54,8 +48,5 @@ public class LoginTest {
         Assert.assertEquals(errorMessage, "Your password is invalid!", "Wrong error message");
     }
 
-    @AfterClass
-    public void tearDown() {
-          driver.quit();
-    }
+
 }
