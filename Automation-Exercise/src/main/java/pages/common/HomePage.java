@@ -58,8 +58,6 @@ public class HomePage extends PageBase {
     }
 
     public PopUp addItemToCart(int index) {
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElements(productsItems).get(index)).perform();
         driver.findElements(addToCartBtn).get(index * 2).click();
         return new PopUp(driver);
     }
