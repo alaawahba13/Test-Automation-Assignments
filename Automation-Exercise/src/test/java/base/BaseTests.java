@@ -42,7 +42,7 @@ public class BaseTests {
 
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
-//        options.addArguments("--headless"); // Run in headless mode
+        options.addArguments("--headless"); // Run in headless mode
         driver = new ChromeDriver(options);
         driver.get("https://automationexercise.com/");
         driver.manage().window().maximize();

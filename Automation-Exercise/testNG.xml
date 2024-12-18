@@ -57,4 +57,12 @@
             </class>
         </classes>
     </test>
+    <test name="APITests">
+        <classes>
+            <class name="api.LoginTests"/>
+            <class name="api.ProductsTests"/>
+            <class name="api.UserAccountTests">
+            </class>
+        </classes>
+    </test>
 </suite>
